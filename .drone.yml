@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: pre-checks
+
+steps:
+  - name: test
+    image: casperlabs/node-build-u1804
+    commands:
+      - echo "Hi Tom"
