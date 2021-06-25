@@ -1,9 +1,20 @@
 kind: pipeline
 type: docker
-name: pre-checks
+name: release-by-tag
 
 steps:
-  - name: test
-    image: casperlabs/node-build-u1804
-    commands:
-      - echo "Hi Tom"
+- name: update-default-branch
+  image: casperlabs/node-build-u1804
+  environment:
+    GITHUB_TOKEN:
+      from_secret: github_token
+  commands:
+    - "./ci/change_default_branch.py"
+
+volumes:
+- name: nctl-temp-dir
+  temp: {}
+
+trigger:
+  ref:
+  - refs/tags/v*
