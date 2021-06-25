@@ -9,6 +9,7 @@ steps:
     GITHUB_TOKEN:
       from_secret: github_token
   commands:
+    - "pip3 install PyGithub semantic_version"
     - "./ci/change_default_branch.py"
 
 volumes:
